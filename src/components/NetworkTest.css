@@ -1,0 +1,9 @@
+/******************************************
+*  Author : Author   
+*  Created On : Wed May 23 2018
+*  File : NetworkTest.css
+*******************************************/
+
+.list--businesses .list-item {
+    align-items: flex-start
+}

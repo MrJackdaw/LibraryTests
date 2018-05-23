@@ -1,0 +1,42 @@
+/******************************************
+*  Created On : Sat Feb 10 2018
+*  File : Sections.css
+*******************************************/
+
+.section {
+    align-items: flex-start;
+    display: flex;
+    padding: 10px;
+}
+
+.section--column {
+    flex-direction: column;
+}
+
+.section--centered {
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.section--inline {
+    display: inline-flex;
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+
+.section--wide {
+    width: 100%;
+}
+
+.section--wrap {
+    flex-wrap: wrap;
+}
+
+.section__overflow {
+    display: block;
+    flex-shrink: 0;
+    overflow-x: auto;
+    width: 100%;
+}

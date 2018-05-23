@@ -1,0 +1,20 @@
+{
+  "name": "duck-test",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "1.1.1"
+  },
+  "dependencies": {
+    "@jackcom/app-network-layer": "^0.3.6",
+    "@jackcom/raphsducks": "^0.4.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

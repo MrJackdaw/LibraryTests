@@ -1,0 +1,41 @@
+/******************************************
+*  Created On : Sat Feb 10 2018
+*  File : Flex.css
+*******************************************/
+
+.flex,
+.flex--center,
+.flex--column {
+    display: flex;
+}
+
+.flex,
+.flex--center,
+.flex--column,
+.inline,
+.inline--center,
+.inline--column {
+    align-items: center;
+}
+
+.flex--center,
+.inline--center {
+    align-content: center;
+    justify-content: center;
+}
+
+.flex--justify{
+    justify-content: space-between;
+}
+
+.inline {
+    display: inline-flex;
+}
+
+.no-grow {
+    flex-grow: 0;
+}
+
+.no-shrink {
+    flex-shrink: 0;
+}

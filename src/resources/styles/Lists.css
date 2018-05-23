@@ -1,0 +1,60 @@
+/******************************************
+*  Created On : Sat Feb 10 2018
+*  File : Lists.css
+*******************************************/
+
+/* LISTS */
+
+.list {
+    display: flex;
+    box-shadow: 0 2px 3px #a6a6a6;
+    width: 100%;
+}
+
+.list--column {
+    flex-direction: column;
+}
+
+.list--rounded {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.list--wrap {
+    flex-wrap: wrap
+}
+
+.list-item {
+    align-items: center;
+    align-content: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    line-height: 2em;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.list-item--bordered {
+    border-top: 1px solid;
+}
+
+.list-item--centered {
+    align-content: center;
+    justify-content: center;
+}
+
+.list-item:first-child {
+    border: 0
+}
+
+.list-item--selectable:hover,
+.list-item--selectable.list-item--inactive {
+    background: #f7f7f7;
+}
+
+.list-item--label {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+}

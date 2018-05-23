@@ -1,0 +1,28 @@
+/******************************************
+*  Author : Author   
+*  Created On : Sat Mar 31 2018
+*  File : Counter.css
+*******************************************/
+
+.counter {
+    font-size: 1rem;
+    padding: 0.416em;
+    flex-direction: column;
+}
+
+.counter,
+.counter__button {
+    align-content: center;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.counter__button {
+    font-size: 0.9rem;
+}
+
+.counter__value {
+    font-size: xx-large;
+    font-weight: 8em;
+}
