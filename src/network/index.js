@@ -7,7 +7,7 @@
  * directory to see it in action
  */
 
-import NetworkLayer from '@jackcom/app-network-layer';
+/* import {a as default} from '@jackcom/app-network-layer';
 // 
 import Routes from './endpoints';
 // 
@@ -15,4 +15,4 @@ const { APIConfig } = NetworkLayer;
 
 const Network = new APIConfig(Routes);
 
-export default Network;
+export default Network; */

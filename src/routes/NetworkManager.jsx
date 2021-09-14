@@ -3,13 +3,29 @@ import Network from "../network";
 import "./NetworkManager.scss";
 
 const NetworkManager = () => {
-  const fetchItems =  async () => {
-  const bus =  await Network.recentlyRegisteredOregonBusinesses()
-  console.log(bus)
-  }
+  const fetchItems = async () => {
+    const bus = await Network.recentlyRegisteredOregonBusinesses();
+    console.log(bus);
+  };
   return (
     <section>
       <h4>Network Manager Code</h4>
+
+      <p>
+        <b>Real-talk:</b> I broke this library. It will take some time to fix.
+      </p>
+      <p>
+        I am in the process of converting it into Typescript, with similar IDE
+        code-suggestion functionality as{" "}
+        <b>
+          <i>raphsducks</i>
+        </b>
+        .
+      </p>
+
+      <p>Please be patient as magic 🌈 happens.</p>
+
+      <hr />
 
       <pre>
         <code>/** </code>
@@ -32,10 +48,13 @@ const NetworkManager = () => {
         <code>*/ </code>
         <code>import NetworkLayer from '@jackcom/app-network-layer';</code>
         <code>import Routes from './endpoints'; </code>
-        <code>const Network = new APIConfig(Routes); export default Network;</code>
+        <code>
+          const Network = new APIConfig(Routes); 
+        </code>
+        <code>export default Network;</code>
       </pre>
 
-      <button>Fetch latest Business registrations</button>
+      {/* <button>Fetch latest Business registrations</button> */}
     </section>
   );
 };
