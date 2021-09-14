@@ -1,76 +1,82 @@
-import React, { PureComponent } from 'react';
-// 
-import { suppress } from '../../utils';
-import { ALT_STATE } from '../../state';
-// 
-import './Counter.css';
-import Counter from './Counter';
-import SubscribeComponent from '../Subscriber';
-import { 
-    incrementAltCounterValue, 
-    decrementAltCounterValue, 
-    incrementCounterValue, 
-    decrementCounterValue 
-} from '../../state/dispatchers';
+import React, { PureComponent } from "react";
+//
+import "./Counter.css";
+import Counter from "./Counter";
+import SubscribeComponent from "../Subscriber";
+import {
+  incrementAltCounterValue,
+  decrementAltCounterValue,
+  incrementCounterValue,
+  decrementCounterValue,
+} from "../../state/utils";
+import AppState, { AltState } from "../../state";
 
 export default class CounterSection extends PureComponent {
-    
-    addCounterView = suppress(() =>
-        this.props.updateCounterViewCount(this.props.counterViewCount + 1))
+  render() {
+    const {
+      counterValue = 1,
+      numViews = 0,
+      title,
+      updateNumCounters,
+    } = this.props;
+    const add = () => updateNumCounters(numViews + 1);
+    const sub = () => updateNumCounters(Math.max(numViews - 1, 0));
+    const padding = { padding: `0 5px` };
 
-    removeCounterView = suppress(() =>
-        this.props.updateCounterViewCount(this.props.counterViewCount - 1))
+    return (
+      <section className="section section--column half no-shrink no-grow">
+        <section className="section section--centered">
+          <div className="button-group" style={{ margin: `0 5px 0 0` }}>
+            <button style={padding} onClick={sub} className="button">
+              ( - ) Remove
+            </button>
+            <button style={padding} onClick={add} className="button">
+              ( + ) Add
+            </button>
+          </div>
 
-    render() {
+          <p className="section__title">
+            {title} ({numViews || "none"})
+          </p>
+        </section>
 
-        const { counterValue = 1, counterViewCount = 0 } = this.props;
-        const counterViews = makeCounterViews(counterViewCount, counterValue);
-
-        return (
-            <section className="section section--column half no-shrink no-grow">
-                <section className="section section--centered">
-                    <div className="button-group" style={{ margin: `0 5px 0 0` }}>
-                        <a style={{ padding: `0 5px` }} onClick={this.addCounterView} className="button">+</a>
-                        <a style={{ padding: `0 5px` }} onClick={this.removeCounterView} className="button">-</a>
-                    </div>
-                    <p className="section__title">{this.props.title} ({counterViewCount || "none"})</p>
-                </section>
-
-                <section style={{ flexWrap: "wrap" }} className="section section--centered">
-                    {counterViewCount && counterViews}
-                </section>
-            </section>
-        );
-    }
+        <section
+          style={{ flexWrap: "wrap" }}
+          className="section section--centered"
+        >
+          {numViews && makeCounterViews(numViews, counterValue)}
+        </section>
+      </section>
+    );
+  }
 }
 
-const mapProps = (state) => ({ value: state.counterValue });
-
-const LinkedCounter = SubscribeComponent(Counter, mapProps);
-
-const AltLinkedCounter = SubscribeComponent(Counter, mapProps, ALT_STATE);
+const mapProps = ({ counterValue: value }) => ({ value });
+const LinkedCounter = SubscribeComponent(Counter, mapProps, AppState);
+const AltLinkedCounter = SubscribeComponent(Counter, mapProps, AltState);
 
 //  Helpers
-function makeCounterViews(counterViewCount, currCounterValue) {
-    const counterViews = [];
-    if (!counterViewCount) return counterViews;
-    for (let i = 0; i < counterViewCount; i++) {
-        counterViews.push(
-            <LinkedCounter
-                key={`o-${i}`}
-                label="State A"
-                increment={incrementCounterValue}
-                decrement={decrementCounterValue}
-            />,
+function makeCounterViews(howMany, currCounterValue) {
+  if (!howMany) return [];
 
-            <AltLinkedCounter
-                key={i}
-                label="State B"
-                increment={incrementAltCounterValue}
-                decrement={decrementAltCounterValue}
-            />
-        )
-    }
+  const counterViews = [];
+  for (let i = 0; i < howMany; i++) {
+    counterViews.push(
+      <LinkedCounter
+        key={`o-${i}`}
+        label="State A"
+        increment={incrementCounterValue}
+        decrement={decrementCounterValue}
+      />,
 
-    return counterViews;
+      <AltLinkedCounter
+        key={i}
+        label="State B"
+        increment={incrementAltCounterValue}
+        decrement={decrementAltCounterValue}
+      />
+    );
+  }
+
+  return counterViews;
 }

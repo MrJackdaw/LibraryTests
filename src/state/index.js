@@ -1,9 +1,13 @@
-// Application State 
-import createState from '@jackcom/raphsducks';
-import * as Setters from './setters';
-// 
-const AppState = createState(Setters); // Global state
-const AltState = createState(Setters, true); // unique state instance
+// Application State
+import createState from "@jackcom/raphsducks";
+//
+const initialState = {
+  /** Current counter value */
+  counterValue: 0,
+  /** Number of counter-views on screen */
+  counterViewCount: 0,
+};
+const AppState = createState(initialState);
+export const AltState = createState(initialState);
 
 export default AppState;
-export {AltState as ALT_STATE};

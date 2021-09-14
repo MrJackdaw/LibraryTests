@@ -9,7 +9,7 @@
 
 import NetworkLayer from '@jackcom/app-network-layer';
 // 
-import Routes from './routes';
+import Routes from './endpoints';
 // 
 const { APIConfig } = NetworkLayer;
 
