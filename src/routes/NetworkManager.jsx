@@ -1,12 +1,7 @@
 import React from "react";
-import Network from "../network";
 import "./NetworkManager.scss";
 
 const NetworkManager = () => {
-  const fetchItems = async () => {
-    const bus = await Network.recentlyRegisteredOregonBusinesses();
-    console.log(bus);
-  };
   return (
     <section>
       <h4>Network Manager Code</h4>
@@ -48,9 +43,7 @@ const NetworkManager = () => {
         <code>*/ </code>
         <code>import NetworkLayer from '@jackcom/app-network-layer';</code>
         <code>import Routes from './endpoints'; </code>
-        <code>
-          const Network = new APIConfig(Routes); 
-        </code>
+        <code>const Network = new APIConfig(Routes);</code>
         <code>export default Network;</code>
       </pre>
 

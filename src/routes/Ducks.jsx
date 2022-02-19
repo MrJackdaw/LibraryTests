@@ -1,12 +1,12 @@
-import React from "react";
+import { useState, useEffect, Fragment } from "react";
 import CounterSection from "../components/counters";
 import AppState, { AltState } from "../state";
 
 const RaphsDucks = () => {
-  const [appState, setAppState] = React.useState(AppState.getState());
-  const [altState, setAltState] = React.useState(AltState.getState());
+  const [appState, setAppState] = useState(AppState.getState());
+  const [altState, setAltState] = useState(AltState.getState());
 
-  React.useEffect(() => {
+  useEffect(() => {
     const unsubApp = AppState.subscribe(setAppState);
     const unsubAlt = AltState.subscribe(setAltState);
 
@@ -18,7 +18,7 @@ const RaphsDucks = () => {
 
 
   return (
-    <React.Fragment>
+    <Fragment>
       <p>
         This section demonstrates the "raphsducks" state manager. Engine source
         files are in <b>/src/state</b>.
@@ -49,7 +49,7 @@ const RaphsDucks = () => {
           updateNumCounters={c => AltState.counterViewCount(c)}
         />
       </section>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
