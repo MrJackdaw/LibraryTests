@@ -7,7 +7,7 @@
     "sass": "^1.40.0"
   },
   "dependencies": {
-    "@jackcom/raphsducks": "^1.1.6",
+    "@jackcom/raphsducks": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.1",
