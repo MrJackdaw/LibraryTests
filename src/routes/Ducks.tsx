@@ -1,20 +1,13 @@
 import { useState, useEffect, Fragment } from "react";
+import useGlobalCounter from "../hooks/useGlobalCounter";
 import CounterSection from "../components/counters";
-import AppState, { AltState } from "../state";
+import AppState, { AltState, initialState } from "../state";
 
 const RaphsDucks = () => {
-  const [appState, setAppState] = useState(AppState.getState());
-  const [altState, setAltState] = useState(AltState.getState());
-
-  useEffect(() => {
-    const unsubApp = AppState.subscribe(setAppState);
-    const unsubAlt = AltState.subscribe(setAltState);
-
-    return function unsubscribeAll() {
-      unsubApp();
-      unsubAlt();
-    };
-  }, []);
+  const keys = Object.keys(initialState);
+  const { counterViewCount, counterValue } = useGlobalCounter(keys, AppState);
+  const { counterValue: altValue, counterViewCount: altViewCount } =
+    useGlobalCounter(keys, AltState);
 
   return (
     <Fragment>
@@ -36,15 +29,15 @@ const RaphsDucks = () => {
       <section className="section">
         <CounterSection
           title="Counters (State A)"
-          counterValue={appState.counterValue}
-          numViews={appState.counterViewCount}
+          counterValue={counterValue}
+          numViews={counterViewCount}
           updateNumCounters={(c) => AppState.counterViewCount(c)}
         />
 
         <CounterSection
           title="Counters (State B)"
-          counterValue={altState.counterValue}
-          numViews={altState.counterViewCount}
+          counterValue={altValue}
+          numViews={altViewCount}
           updateNumCounters={(c) => AltState.counterViewCount(c)}
         />
       </section>

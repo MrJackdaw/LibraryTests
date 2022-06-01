@@ -1,39 +1,65 @@
-import React, { PureComponent } from 'react';
-// 
-import { suppress } from '../../utils';
-// 
-import './Counter.css';
+import { AltState } from "../../state";
+import useGlobalCounter from "../../hooks/useGlobalCounter";
+//
+import "./Counter.css";
+
+type CounterProps = {
+  label: string;
+  value: number;
+  decrement: () => void;
+  increment: () => void;
+};
 
 /**
  * A view that displays a numeric value and (+,-) controls to modify it
  */
-export default class Counter extends PureComponent {
+export default function Counter(props: CounterProps) {
+  const { label, value, increment, decrement } = props;
 
-    decrement = suppress(() => this.props.decrement(this.props.value))
+  return (
+    <section className="counter counter__wrapper">
+      <span className="counter__label">{label}</span>
+      <span className="counter__value">{value || 0}</span>
+      <div className="counter__buttons button-group">
+        <a className="counter__button button" role="button" onClick={decrement}>
+          Decrement
+        </a>
 
-    increment = suppress(() => this.props.increment(this.props.value))
-
-    render() {
-        return (
-            <section className="counter counter__wrapper">
-                <span className="counter__label">{this.props.label}</span>
-                <span className="counter__value">{this.props.value || 0}</span>
-                <div className="counter__buttons button-group">
-                    <a
-                        className="counter__button button"
-                        role="button"
-                        onClick={this.decrement}>
-                        Decrement
-                    </a>
-
-                    <a
-                        className="counter__button button"
-                        role="button"
-                        onClick={this.increment}>
-                        Increment
-                    </a>
-                </div>
-            </section>
-        );
-    }
+        <a className="counter__button button" role="button" onClick={increment}>
+          Increment
+        </a>
+      </div>
+    </section>
+  );
 }
+
+const keys = ["counterValue"];
+
+export const AltLinkedCounter = () => {
+  const { increment, decrement, counterValue } = useGlobalCounter(
+    keys,
+    AltState
+  );
+
+  return (
+    <Counter
+      label="State B"
+      value={counterValue}
+      decrement={decrement}
+      increment={increment}
+    />
+  );
+};
+
+export const LinkedCounter = () => {
+  const { increment, decrement, counterValue } = useGlobalCounter(keys);
+
+  return (
+    <Counter
+      label="State A"
+      value={counterValue}
+      decrement={decrement}
+      increment={increment}
+    />
+  );
+};
