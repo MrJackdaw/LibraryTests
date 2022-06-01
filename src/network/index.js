@@ -1,18 +1,15 @@
 /**
- * `NetworkLayer` has two properties: 
+ * `NetworkLayer` has two main properties:
  * -> `METHODS`: a string-string dictionary of request types (GET, POST, DEL, etc)
- * -> `APIConfig`: the object that uses your predefined endpoints ("routes") to make requests
- * 
- * Export an instance of `APIConfig` that looks like the one below: view a "service" file in this 
+ * -> `APIConfig`: the function that turns your predefined endpoints ("routes") into a request-making machine
+ *
+ * Export an instance of `APIConfig` that looks like the one below: view a "service" file in this
  * directory to see it in action
  */
 
-/* import {a as default} from '@jackcom/app-network-layer';
-// 
-import Routes from './endpoints';
-// 
-const { APIConfig } = NetworkLayer;
+import APIConfig from "@jackcom/app-network-layer";
+import endpoints from "./endpoints";
+//
 
-const Network = new APIConfig(Routes);
-
-export default Network; */
+const API = APIConfig(endpoints);
+export default API;
