@@ -14,8 +14,7 @@ const RaphsDucks = () => {
       unsubApp();
       unsubAlt();
     };
-  });
-
+  }, []);
 
   return (
     <Fragment>
@@ -29,9 +28,9 @@ const RaphsDucks = () => {
         section are controlled by State "A", and the ones in the right by "B".
       </p>
       <p>
-        Click the <b>(+ , -)</b> once to add two counters: one will be subscribed to
-        State A, and the other to State B. Increment or decrement the counter
-        values to see State subscribers get updated!
+        Click the <b>(+ , -)</b> once to add two counters: one will be
+        subscribed to State A, and the other to State B. Increment or decrement
+        the counter values to see State subscribers get updated!
       </p>
 
       <section className="section">
@@ -39,14 +38,14 @@ const RaphsDucks = () => {
           title="Counters (State A)"
           counterValue={appState.counterValue}
           numViews={appState.counterViewCount}
-          updateNumCounters={c => AppState.counterViewCount(c)}
+          updateNumCounters={(c) => AppState.counterViewCount(c)}
         />
 
         <CounterSection
           title="Counters (State B)"
           counterValue={altState.counterValue}
           numViews={altState.counterViewCount}
-          updateNumCounters={c => AltState.counterViewCount(c)}
+          updateNumCounters={(c) => AltState.counterViewCount(c)}
         />
       </section>
     </Fragment>
